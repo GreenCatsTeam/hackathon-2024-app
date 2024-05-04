@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/pages/ReportPage.dart';
 import 'package:flutter_application_2/pages/map_screen.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -15,7 +16,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var _current_page = 0;
   var _pages = [
-    Text("1"),
+    const ReportPage(),
     const MapScreen(),
     Text("3"),
     Text("4")

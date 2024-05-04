@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter_application_2/config.dart';
 import 'package:flutter_application_2/models/login_models.dart';
@@ -54,5 +55,31 @@ class APIService {
     var responce = await client.post(url, headers: requestHeaders, body: jsonEncode(model.toJson()));
 
     return registerResponceModel(responce.body);
+  }
+
+  static Future<String?> uploadImage(String path) async {
+    var request = http.MultipartRequest('POST', Uri.http(Config.imageServerURL, Config.uploadImg));
+    request.files.add(await http.MultipartFile.fromPath('file', path));
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      String img_uid = await response.stream.bytesToString();
+      return img_uid;
+    }
+    return null;
+  }
+
+  static Future<String?> downloadImage(String id) async {
+    var url = Uri.http(Config.imageServerURL, Config.uploadImg + "/" + id);
+
+
+    var file = new File(id + ".png");
+    IOSink ios = file.openWrite(mode: FileMode.append);
+    http.get(url).then((http.Response responce) {
+      ios.add(responce.bodyBytes);
+    }).whenComplete(() => ios.close());
+
+    return null;
   }
 }

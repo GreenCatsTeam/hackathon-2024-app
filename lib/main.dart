@@ -4,7 +4,7 @@ import 'pages/login_page.dart';
 import 'pages/register_page.dart';
 import 'pages/home_page.dart';
 
-Widget _defaultHome = const HomePage();
+Widget _defaultHome = const LoginPage();
 
 String? yootoken;
 
