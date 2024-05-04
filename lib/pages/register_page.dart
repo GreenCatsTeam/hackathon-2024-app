@@ -25,6 +25,8 @@ class _RegisterPageState extends State<RegisterPage> {
   String? city;
   String? district;
 
+  // RegisterRequestModel model = RegisterRequestModel(email: "1", password: "2", firstName: "3", lastName: "4", organization: "5", role: "6", city: "7", district: "8");
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -112,6 +114,7 @@ class _RegisterPageState extends State<RegisterPage> {
               return null;
             },
             (onSavedVal) {
+
               username = onSavedVal;
             },
             prefixIcon: const Icon(Icons.mail),
@@ -138,7 +141,8 @@ class _RegisterPageState extends State<RegisterPage> {
               return null;
             },
             (onSavedVal) {
-              username = onSavedVal;
+              password = onSavedVal;
+
             },
             prefixIcon: const Icon(Icons.password),
             borderFocusColor: Colors.indigoAccent,
@@ -177,6 +181,7 @@ class _RegisterPageState extends State<RegisterPage> {
             },
             (onSavedVal) {
               lastname = onSavedVal;
+
             },
             prefixIcon: const Icon(Icons.person),
             borderFocusColor: Colors.indigoAccent,
@@ -276,13 +281,14 @@ class _RegisterPageState extends State<RegisterPage> {
                   setState(() {
                     isAPICallProcess = true;
                   });
-                  RegisterRequestModel model = RegisterRequestModel(firstName: firstname, lastName: lastname, email: username, password: password, city: city, district: district);
+                  RegisterRequestModel model = RegisterRequestModel(firstName: firstname, lastName: lastname, email: username, password: password, city: city, district: district, role: "user");
+
                   APIService.register(model).then((responce){
                     if (responce.jwtToken != null) {
                       FormHelper.showSimpleAlertDialog(context, Config.appName, "Вы зарегистрированы! Пожалуйста, войдите в аккаунт", "OK", () {
                         Navigator.pushNamedAndRemoveUntil(context, "/login", (route) => false);
                       });
-                      Navigator.pushNamedAndRemoveUntil(context, "/home", (route) => false);
+                      // Navigator.pushNamedAndRemoveUntil(context, "/home", (route) => false);
                     } else {
                       FormHelper.showSimpleAlertDialog(context, Config.appName, responce.description!, "OK", () {
                         Navigator.pop(context);
@@ -304,6 +310,7 @@ class _RegisterPageState extends State<RegisterPage> {
   bool validateAndSave() {
     final form = globalFormKey.currentState;
     if (form!.validate()) {
+      form.save();
       return true;
     }
     return false;

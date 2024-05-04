@@ -134,7 +134,7 @@ class _LoginPageState extends State<LoginPage> {
               return null;
             },
             (onSavedVal) {
-              username = onSavedVal;
+              password = onSavedVal;
             },
             prefixIcon: const Icon(Icons.password),
             borderFocusColor: Colors.indigoAccent,
@@ -229,6 +229,7 @@ class _LoginPageState extends State<LoginPage> {
   bool validateAndSave() {
     final form = globalFormKey.currentState;
     if (form!.validate()) {
+      form.save();
       return true;
     }
     return false;

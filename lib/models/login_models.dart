@@ -28,12 +28,12 @@ class LoginResponceModel {
   LoginResponceModel({this.jwtToken});
 
   LoginResponceModel.fromJson(Map<String, dynamic> json) {
-    jwtToken = json['jwtToken'];
+    jwtToken = json['jwtoken'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['jwtToken'] = this.jwtToken;
+    data['jwtoken'] = this.jwtToken;
     return data;
   }
 }

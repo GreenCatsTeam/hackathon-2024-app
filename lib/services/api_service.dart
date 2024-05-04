@@ -11,15 +11,25 @@ class APIService {
 
   static Future<bool> login(LoginRequestModel model) async {
     Map<String, String> requestHeaders = {
-      'Content-type': 'application/json'
+      'Content-type': 'application/json',
+      'Host': Config.apiURL
     };
 
     var url = Uri.http(Config.apiURL, Config.loginAPI);
 
+    requestHeaders['Content-Length'] = jsonEncode(model.toJson()).length.toString();
+    print(jsonEncode(model.toJson()));
+    print(requestHeaders.toString());
+    print(url);
+    print("yay!");
+
     var responce = await client.post(url, headers: requestHeaders, body: jsonEncode(model.toJson()));
 
     if (responce.statusCode == 200) {
+      print("yay1!");
+      print(responce.body);
       await SharedService.setLoginDetails(loginResponceModel(responce.body));
+      print("yay2!");
       return true;
     }
 
@@ -28,11 +38,19 @@ class APIService {
 
   static Future<RegisterResponceModel> register(RegisterRequestModel model) async {
     Map<String, String> requestHeaders = {
-      'Content-type': 'application/json'
+      'Content-type': 'application/json',
+      'Host': Config.apiURL
     };
 
     var url = Uri.http(Config.apiURL, Config.registerAPI);
 
+    model.organization = "";
+
+    requestHeaders['Content-Length'] = jsonEncode(model.toJson()).length.toString();
+    print(jsonEncode(model.toJson()));
+    print(requestHeaders.toString());
+    print(url);
+    print("yay!");
     var responce = await client.post(url, headers: requestHeaders, body: jsonEncode(model.toJson()));
 
     return registerResponceModel(responce.body);

@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/services/shared_service.dart';
 
 import 'pages/login_page.dart';
 import 'pages/register_page.dart';
 import 'pages/home_page.dart';
 
-Widget _defaultHome = const LoginPage();
+Widget _defaultHome = const HomePage();
+
+String? yootoken;
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-
+  WidgetsFlutterBinding.ensureInitialized();
+  print("yay000");
   // bool _res = await SharedService.isLoggedIn();
+  print("yay001");
 
   // if (_res) {
-    // _defaultHome = const HomePage();
+  //   _defaultHome = const HomePage();
   // }
   runApp(const MyApp());
 }
