@@ -65,7 +65,7 @@ class _ReportPageState extends State<ReportPage> {
         ),
         Center(
           child: MaterialButton(
-            color: Colors.greenAccent,
+            color: Colors.indigo,
             child:
               const Text(
                 "Выбрать изображение из галереи",
@@ -107,6 +107,14 @@ class _ReportPageState extends State<ReportPage> {
               (onSavedVal) {
               city = onSavedVal;
                    },
+              prefixIcon: const Icon(Icons.location_city),
+              borderFocusColor: Colors.indigoAccent,
+              prefixIconColor: Colors.indigo,
+              borderColor: Colors.indigo,
+              textColor: Colors.indigo,
+              hintColor: Colors.indigo.withOpacity(0.7),
+              borderRadius: 20,
+              showPrefixIcon: true,
                     )
                   ),
         Padding(
@@ -128,10 +136,20 @@ class _ReportPageState extends State<ReportPage> {
                 {
                   return true;
                 }
-              },
+                },
                   (onSavedVal) {
-                district = onSavedVal;
+                setState(() {
+                  district = onSavedVal;
+                });
               },
+              prefixIcon: const Icon(Icons.zoom_in),
+              borderFocusColor: Colors.indigoAccent,
+              prefixIconColor: Colors.indigo,
+              borderColor: Colors.indigo,
+              textColor: Colors.indigo,
+              hintColor: Colors.indigo.withOpacity(0.7),
+              borderRadius: 20,
+              showPrefixIcon: true,
             )
         ),
         Padding(
@@ -148,9 +166,23 @@ class _ReportPageState extends State<ReportPage> {
                 return true;//TODO: better check of email
               },
                   (onSavedVal) {
-                comment = onSavedVal;
+                setState(() {
+                  comment = onSavedVal;
+                });
               },
+              prefixIcon: const Icon(Icons.textsms),
+              borderFocusColor: Colors.indigoAccent,
+              prefixIconColor: Colors.indigo,
+              borderColor: Colors.indigo,
+              textColor: Colors.indigo,
+              hintColor: Colors.indigo.withOpacity(0.7),
+              borderRadius: 20,
+              showPrefixIcon: true,
             )
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 30),
+          child: Text("Оцените замусоренность:", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.indigo)),
         ),
       Center(
       child:Slider(
