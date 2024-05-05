@@ -105,8 +105,10 @@ class _ReportPageState extends State<ReportPage> {
                 }
             },
               (onSavedVal) {
-              city = onSavedVal;
-                   },
+              setState(() {
+                city = onSavedVal;
+              });
+              },
               prefixIcon: const Icon(Icons.location_city),
               borderFocusColor: Colors.indigoAccent,
               prefixIconColor: Colors.indigo,
