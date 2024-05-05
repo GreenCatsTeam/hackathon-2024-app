@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/pages/ReportPage.dart';
+import 'package:flutter_application_2/pages/UserInfoPage.dart';
 import 'package:flutter_application_2/pages/map_screen.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -18,8 +19,8 @@ class _HomePageState extends State<HomePage> {
   var _pages = [
     const ReportPage(),
     const MapScreen(),
-    Text("3"),
-    Text("4")
+    const Text("3"),
+    const UserInfoPage(),
   ];
   @override
   Widget build(BuildContext context) {

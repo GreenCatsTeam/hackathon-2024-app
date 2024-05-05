@@ -43,6 +43,7 @@ class RegisterRequestModel {
     data['districtName'] = this.district;
     return data;
   }
+
 }
 
 RegisterResponceModel registerResponceModel(String str) =>
@@ -66,3 +67,4 @@ class RegisterResponceModel {
     return data;
   }
 }
+
